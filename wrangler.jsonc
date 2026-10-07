@@ -1,0 +1,13 @@
+// Cloudflare Workers (statik site) yapılandırması — `npx wrangler deploy` bu dosyayı okur.
+// Site tamamen statiktir: `npm run build` çıktısı olan dist/ klasörü olduğu gibi sunulur.
+// dist/_headers (public/_headers) önbellek ve güvenlik başlıklarını uygular.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "themindbox",
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": "./dist",
+    // Tek sayfalık site: bilinmeyen bir adres ana sayfaya düşer (404 yerine)
+    "not_found_handling": "single-page-application"
+  }
+}
