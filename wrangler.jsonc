@@ -9,5 +9,13 @@
     "directory": "./dist",
     // Tek sayfalık site: bilinmeyen bir adres ana sayfaya düşer (404 yerine)
     "not_found_handling": "single-page-application"
-  }
+  },
+  // Alan adları: her yayında Worker'a bağlanır; DNS kaydı ve SSL sertifikası
+  // Cloudflare tarafından otomatik oluşturulur (alan adı aynı hesapta olmalı).
+  "routes": [
+    { "pattern": "themindbox.com.tr", "custom_domain": true },
+    { "pattern": "www.themindbox.com.tr", "custom_domain": true }
+  ],
+  // themindbox.mustafa-demirci-57.workers.dev adresi de açık kalsın
+  "workers_dev": true
 }
