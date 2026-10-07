@@ -62,7 +62,9 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.1 }}
           >
             <span className="size-1.5 rounded-full bg-acrylic" />
-            Brain Fitness bulmacaları — {site.city}
+            <span>
+              <span lang="en">Brain Fitness</span> bulmacaları — {site.city}
+            </span>
           </motion.p>
 
           <h1 className="display text-[clamp(3rem,8.2vw,7.5rem)] leading-[0.95] text-graphite-950">
@@ -105,7 +107,9 @@ export function Hero() {
           Aşağı kaydır
         </a>
         <span className="label hidden sm:block">Est. 2026</span>
-        <span className="label">{site.domain}</span>
+        <span className="label" lang="en">
+          {site.domain}
+        </span>
       </motion.div>
     </section>
   )

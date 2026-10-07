@@ -19,18 +19,23 @@ export const site = {
   howItWorksVideo: null as null | { webm?: string; mp4: string; poster?: string },
   /**
    * Veri sorumlusu bilgileri — KVKK Aydınlatma Metni ve Çerez Politikası bu alanlardan beslenir.
-   * ⚠️ Köşeli parantezli değerler YER TUTUCUDUR; yayından önce şirketin resmî bilgileriyle değiştirin.
+   * Şimdilik genel bilgiler; şirketin resmî ticari unvanı, tam adresi, MERSİS ve KEP adresiyle
+   * güncelleyin. Boş bırakılan alanlar (mersis, kep) metinde hiç gösterilmez.
    */
   legal: {
-    company: '[Şirket ticari unvanı]',
-    address: '[Şirket açık adresi]',
-    mersis: '[MERSİS numarası]',
-    kep: '[KEP adresi — varsa]',
+    company: 'The Mind Box',
+    address: 'İstanbul, Türkiye',
+    mersis: '',
+    kep: '',
     updated: '7 Ekim 2026',
   },
+  /**
+   * Sosyal medya hesapları. `href` boşsa bağlantı sitede gösterilmez; resmî adres
+   * yazıldığı anda alt bilgide görünür. Hepsi boşken o sütunda iletişim bilgileri yer alır.
+   */
   social: [
-    { label: 'Instagram', href: 'https://instagram.com/' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/' },
-    { label: 'YouTube', href: 'https://youtube.com/' },
-  ],
+    { label: 'Instagram', href: '' },
+    { label: 'LinkedIn', href: '' },
+    { label: 'YouTube', href: '' },
+  ] as { label: string; href: string }[],
 } as const

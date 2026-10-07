@@ -35,7 +35,11 @@ Anahtar tanımlı değilse form gönderim yapmaz; ziyaretçiye doğrudan e-posta
 | KVKK Aydınlatma Metni, Çerez Politikası | `src/data/legal.ts` |
 | Bulmaca şekilleri ve parça geometrisi | `src/components/visual/puzzles.tsx` |
 
-**Yayından önce:** `src/data/site.ts` içindeki `legal` alanında köşeli parantezli yer tutucuları (şirket unvanı, adres, MERSİS, KEP) doldurun. Yasal metinleri bir hukukçuya gözden geçirtin.
+**Şirket bilgileri:** `src/data/site.ts` → `legal` şimdilik genel bilgilerle doludur (The Mind Box, İstanbul). Resmî ticari unvan, tam adres, MERSİS ve KEP ile güncelleyin. Boş bırakılan MERSİS/KEP alanları metinde gösterilmez. Yasal metinleri bir hukukçuya gözden geçirtin.
+
+**Sosyal medya:** `src/data/site.ts` → `social`. `href` boş olan hesaplar gösterilmez. Hepsi boşken alt bilgide o sütunda iletişim bilgileri yer alır.
+
+**SEO:** `public/robots.txt`, `public/sitemap.xml`, `public/og-image.png` (1200×630 link önizleme görseli). İçerik büyük ölçüde değiştiğinde `sitemap.xml` içindeki `lastmod` tarihini güncelleyin.
 
 Yasal metinler doğrudan bağlantıyla açılabilir: `/#kvkk`, `/#cerez-politikasi`.
 

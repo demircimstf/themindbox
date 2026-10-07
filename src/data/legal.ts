@@ -30,13 +30,22 @@ export const kvkk: LegalDoc = {
   id: 'kvkk',
   kicker: 'Kişisel Verilerin Korunması',
   title: 'KVKK Aydınlatma Metni',
-  intro: `${company} ("The Mind Box" veya "Şirket") olarak kişisel verilerinizin güvenliğine önem veriyoruz. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun ("KVKK") 10. maddesi uyarınca, ${site.domain} web sitesi aracılığıyla işlenen kişisel verileriniz hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.`,
+  // Resmî unvan girildiğinde marka adı ayrıca belirtilir; şimdilik marka adı tek başına
+  intro: `${company === 'The Mind Box' ? 'The Mind Box ("Şirket")' : `${company} ("The Mind Box" veya "Şirket")`} olarak kişisel verilerinizin güvenliğine önem veriyoruz. Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun ("KVKK") 10. maddesi uyarınca, ${site.domain} web sitesi aracılığıyla işlenen kişisel verileriniz hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.`,
   sections: [
     {
       heading: '1. Veri sorumlusu',
       blocks: [
-        `KVKK kapsamında veri sorumlusu ${company}'dır.`,
-        { list: [`Adres: ${address}`, `MERSİS: ${mersis}`, `E-posta: ${site.email}`, `Telefon: ${site.phone}`, `KEP: ${kep}`] },
+        `KVKK kapsamında veri sorumlusu: ${company}.`,
+        {
+          list: [
+            `Adres: ${address}`,
+            mersis && `MERSİS: ${mersis}`,
+            `E-posta: ${site.email}`,
+            `Telefon: ${site.phone}`,
+            kep && `KEP: ${kep}`,
+          ].filter((v): v is string => Boolean(v)),
+        },
       ],
     },
     {
@@ -131,7 +140,7 @@ export const kvkk: LegalDoc = {
     {
       heading: '9. Başvuru yolu',
       blocks: [
-        `Haklarınıza ilişkin taleplerinizi, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ’e uygun olarak; ${address} adresine yazılı olarak, ${kep} adresine KEP ile veya sistemimizde kayıtlı e-posta adresinizden ${site.email} adresine iletebilirsiniz.`,
+        `Haklarınıza ilişkin taleplerinizi, Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ’e uygun olarak; ${address} adresine yazılı olarak${kep ? `, ${kep} adresine KEP ile` : ''} veya sistemimizde kayıtlı e-posta adresinizden ${site.email} adresine iletebilirsiniz.`,
         'Başvurunuz, niteliğine göre en kısa sürede ve en geç 30 (otuz) gün içinde ücretsiz olarak sonuçlandırılır. İşlemin ayrıca bir maliyet gerektirmesi hâlinde, Kişisel Verileri Koruma Kurulu’nca belirlenen tarifedeki ücret alınabilir.',
       ],
     },

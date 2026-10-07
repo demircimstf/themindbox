@@ -4,6 +4,9 @@ import { Logo } from '@/components/ui/Logo'
 
 const WORDS = ['Odak', 'Sabır', 'Merak', 'Zanaat', 'Sessizlik', 'Cesaret']
 
+// Yalnızca adresi girilmiş hesaplar gösterilir
+const social = site.social.filter((s) => s.href.trim())
+
 export function Footer() {
   const year = new Date().getFullYear()
   return (
@@ -42,10 +45,11 @@ export function Footer() {
             </ul>
           </nav>
 
+          {social.length > 0 ? (
           <div className="md:col-span-4">
             <p className="label mb-5">Takip edin</p>
             <ul className="space-y-3">
-              {site.social.map((s) => (
+              {social.map((s) => (
                 <li key={s.label}>
                   <a
                     href={s.href}
@@ -63,6 +67,24 @@ export function Footer() {
               ))}
             </ul>
           </div>
+          ) : (
+            // Resmî hesaplar gelene kadar: aynı sütunda doğrudan iletişim
+            <div className="md:col-span-4">
+              <p className="label mb-5">İletişim</p>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <a href={`mailto:${site.email}`} className="text-graphite-700 transition-colors duration-200 hover:text-graphite-950">
+                    {site.email}
+                  </a>
+                </li>
+                <li>
+                  <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="text-graphite-700 transition-colors duration-200 hover:text-graphite-950">
+                    {site.phone}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Dev kelime işareti — sayfanın son nefesi */}

@@ -1,0 +1,5 @@
+# The Mind Box — tüm arama motorlarına açık
+User-agent: *
+Allow: /
+
+Sitemap: https://themindbox.com.tr/sitemap.xml
