@@ -8,6 +8,13 @@
  */
 const ENDPOINT = 'https://api.web3forms.com/submit'
 
+/**
+ * merhaba@themindbox.com.tr için Web3Forms erişim anahtarı. Herkese açık olacak şekilde
+ * tasarlanmıştır (yalnızca bu adrese form iletebilir). Barındırma servisinde
+ * `VITE_WEB3FORMS_KEY` tanımlanırsa o değer önceliklidir.
+ */
+const PUBLIC_KEY = '073d8660-f64a-498d-899a-7fa850dec29e'
+
 export interface ContactPayload {
   name: string
   email: string
@@ -28,7 +35,7 @@ export class ContactError extends Error {
 }
 
 export async function sendContact(data: ContactPayload): Promise<void> {
-  const key = import.meta.env.VITE_WEB3FORMS_KEY
+  const key = import.meta.env.VITE_WEB3FORMS_KEY || PUBLIC_KEY
   if (!key) throw new ContactError('Form henüz yapılandırılmadı (VITE_WEB3FORMS_KEY eksik).', 'config')
   // Bot: sessizce "başarılı" say, hiçbir şey gönderme
   if (data.botcheck) return
