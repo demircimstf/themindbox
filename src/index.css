@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+/* ─────────────────────────────────────────────────────────────
+   The Mind Box — tasarım token'ları
+   Ferah, İskandinav bir zemin: sıcak fildişi kâğıt + antrasit grafit.
+   Tek vurgu rengi turuncu akriliktir — ürünlerin kendisi gibi.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-paper-50: #f7f4ee;
+  --color-paper-100: #f1ede5;
+  --color-paper-150: #ebe6dc;
+  --color-paper-200: #e3ddd1;
+  --color-paper-300: #d6cfc1;
+  --color-paper-400: #c2baaa;
+  --color-white: #fffdf9;
+
+  --color-graphite-950: #161513;
+  --color-graphite-900: #23211e;
+  --color-graphite-700: #45413b;
+  --color-graphite-500: #6e685f;
+  --color-graphite-400: #8c857a;
+
+  --color-acrylic: #dd5a17;
+  --color-acrylic-soft: #f59a5f;
+
+  --font-display: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* Emil Kowalski çizgisi: güçlü ease-out eğrileri, varsayılan CSS eğrileri değil */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --tracking-label: 0.18em;
+}
+
+@keyframes drift {
+  0% { transform: translateY(-140%); }
+  45%, 55% { transform: translateY(0); }
+  100% { transform: translateY(140%); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-paper-50 font-sans text-graphite-900 antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-graphite-900);
+    color: var(--color-paper-50);
+  }
+
+  :focus-visible {
+    outline: 1.5px solid var(--color-graphite-900);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Küçük, aralıklı mono etiketler — editoryal ritim */
+  .label {
+    @apply font-mono text-[11px] uppercase text-graphite-500;
+    letter-spacing: var(--tracking-label);
+  }
+
+  /* Başlıklar: sıkı aralıklı, keskin, mimari bir sans */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    font-feature-settings: 'ss01', 'ss03';
+    text-wrap: balance;
+  }
+
+  /* Kâğıt dokusu: düz açık yüzeylere çok hafif bir ton */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* mix-blend-mode yok: altındaki animasyonlar her karede yeniden harmanlatmasın */
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Saç teli çizgiler: 1px yerine yarı saydam, lüks ve sessiz */
+  .hairline {
+    @apply border-graphite-900/10;
+  }
+}
